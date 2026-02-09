@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# 🚗 Vehicles SPA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Описание:**
+SPA-приложение на React + TypeScript с использованием Material UI для управления списком машин. Поддерживает: просмотр, сортировку, создание, редактирование и удаление машин, а также отображение их на карте.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Стек технологий
 
-## React Compiler
+* React 18 + Vite
+* TypeScript
+* Material UI v6
+* Axios
+* React Hook Form
+* Leaflet (для карты)
+* Git
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ⚡ Функционал
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Просмотр машин** — список всех автомобилей с отображением `name`, `model`, `year`, `price`.
+2. **Сортировка** — по `year` и `price`.
+3. **Создание машины** — форма для добавления новой машины с полями: `name`, `model`, `year`, `color`, `price`, `latitude`, `longitude`.
+4. **Редактирование** — можно менять `name` и `price`.
+5. **Удаление** — кнопка для удаления машины.
+6. **Карта** — отображение машин по координатам `latitude` и `longitude`.
+7. **Адаптивный UI** — с использованием Material UI v6 (`Grid`, `Stack`, `Paper`, `TextField`, `Button`).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠 Установка
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+
+
+# Устанавливаем зависимости
+npm install
+
+# Запускаем локально
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔗 API
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* **Базовый URL:** `https://task.tspb.su/test-task`
+* **Эндпоинты:**
+
+    * GET `/vehicles` — получить список машин
+    * POST `/vehicles` — создать новую машину
+    * PATCH `/vehicles/:id` — редактировать машину
+    * DELETE `/vehicles/:id` — удалить машину
+
+---
+
+## 🗂 Структура проекта
+
+```
+src/
+├─ api/
+│  └─ vehiclesApi.ts       # Запросы к API
+├─ pages/
+│  ├─ vehicles/
+│  │  ├─ VehiclesPage.tsx  # Главная страница
+│  │  ├─ VehicleForm.tsx   # Форма добавления
+│  │  └─ VehicleList.tsx   # Список с редактированием и удалением
+├─ shared/
+│  └─ types/vehicle.ts     # Типы данных
+└─ main.tsx
+```
+
+---
+
+## 🖼 UI / Дизайн
+
+* Используется **Material UI v6**
+* Форма для добавления авто адаптивная
+* Список машин с кнопками `Edit`/`Delete`
+* Кнопки сортировки для `year` и `price`
+* Карта для отображения машин по координатам
+
+---
+
+## ⚙️ Особенности
+
+* Все формы валидируются с помощью `react-hook-form`
+* UI полностью адаптивный (мобильные и десктоп)
+* Типизация с TypeScript для всех данных (`Vehicle`, `UpdateVehicleDto`)
+* Axios с таймаутом для запросов к API
+
+---
+
+## 📸 Скриншоты (пример)
+
+![Vehicles List](./screenshots/vehicles-list.png)
+![Add Vehicle Form](./screenshots/add-vehicle-form.png)
+![Map View](./screenshots/map-view.png)
+
+---
+
+## 🚀 Команды
+
+```bash
+npm run dev       # Запуск локального сервера
+npm run build     # Сборка проекта
+npm run preview   # Просмотр сборки
 ```
