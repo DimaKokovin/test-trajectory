@@ -92,13 +92,6 @@ src/
 
 ---
 
-## 📸 Скриншоты (пример)
-
-![Vehicles List](./screenshots/vehicles-list.png)
-![Add Vehicle Form](./screenshots/add-vehicle-form.png)
-![Map View](./screenshots/map-view.png)
-
----
 
 ## 🚀 Команды
 

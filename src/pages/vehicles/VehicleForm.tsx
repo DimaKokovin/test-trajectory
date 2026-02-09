@@ -1,7 +1,7 @@
 
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { Vehicle } from "../../shared/types/vehicle";
-import { Box, TextField, Button, Stack } from '@mui/material';
+import { Box, TextField, Button } from '@mui/material';
 
 type Props = {
     onCreate: (data: Omit<Vehicle, 'id'>) => void;
@@ -16,17 +16,24 @@ export const VehicleForm = ({ onCreate }: Props) => {
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} mb={4}>
-            <Stack direction="row" spacing={2} flexWrap="wrap">
-                <TextField label="Name" {...register('name')} required />
-                <TextField label="Model" {...register('model')} required />
-                <TextField label="Year" type="number" {...register('year')} required />
-                <TextField label="Color" {...register('color')} required />
-                <TextField label="Price" type="number" {...register('price')} required />
-                <TextField label="Latitude" type="number" {...register('latitude')} required />
-                <TextField label="Longitude" type="number" {...register('longitude')} required />
-                <Button type="submit" variant="contained" color="primary">Add Vehicle</Button>
-            </Stack>
+        <Box
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            mb={4}
+            display="grid"
+            gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+            gap={2}
+        >
+            <TextField label="Name" {...register('name')} required fullWidth />
+            <TextField label="Model" {...register('model')} required fullWidth />
+            <TextField type="number" label="Year" {...register('year')} required fullWidth />
+            <TextField label="Color" {...register('color')} required fullWidth />
+            <TextField type="number" label="Price" {...register('price')} required fullWidth />
+            <TextField type="number" label="Latitude" {...register('latitude')} required fullWidth />
+            <TextField type="number" label="Longitude" {...register('longitude')} required fullWidth />
+            <Button type="submit" variant="contained" color="primary" sx={{ gridColumn: 'span 1' }}>
+                Add Vehicle
+            </Button>
         </Box>
     );
 };
